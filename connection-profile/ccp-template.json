@@ -1,0 +1,62 @@
+{
+    "name": "first-network-org${ORG}",
+    "version": "1.0.0",
+    "client": {
+        "organization": "Org${ORG}",
+        "connection": {
+            "timeout": {
+                "peer": {
+                    "endorser": "300"
+                }
+            }
+        }
+    },
+    "organizations": {
+        "Org${ORG}": {
+            "mspid": "Org${ORG}MSP",
+            "peers": [
+                "peer0.org${ORG}.ownify.com",
+                "peer1.org${ORG}.ownify.com"
+            ],
+            "certificateAuthorities": [
+                "ca.org${ORG}.ownify.com"
+            ]
+        }
+    },
+    "peers": {
+        "peer0.org${ORG}.ownify.com": {
+            "url": "grpcs://peer0.org${ORG}.ownify.com:${P0PORT}",
+            "tlsCACerts": {
+                "pem": "${PEERPEM}"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer0.org${ORG}.ownify.com",
+                "hostnameOverride": "peer0.org${ORG}.ownify.com"
+            }
+        },
+	"peer1.org${ORG}.ownify.com": {
+            "url": "grpcs://peer1.org${ORG}.ownify.com:${P0PORT1}",
+            "tlsCACerts": {
+                "pem": "${PEERPEM1}"
+            },
+            "grpcOptions": {
+                "ssl-target-name-override": "peer1.org${ORG}.ownify.com",
+                "hostnameOverride": "peer1.org${ORG}.ownify.com"
+            }
+        }
+
+	
+    },
+    "certificateAuthorities": {
+        "ca.org${ORG}.ownify.com": {
+            "url": "https://ca.org${ORG}.ownify.com:${CAPORT}",
+            "caName": "ca.org${ORG}.ownify.com",
+            "tlsCACerts": {
+                "pem": "${CAPEM}"
+            },
+            "httpOptions": {
+                "verify": false
+            }
+        }
+    }
+}

@@ -1,0 +1,28 @@
+# Ignore the entire crypto-config directory inside the channel folder
+channel/channel-artifacts/
+
+# Ignore the entire crypto-config directory inside the channel folder
+channel/crypto-config/
+
+# Ignore the entire crypto-config
+crypto-config/
+
+
+# Ignore the entire fabric-ca directory inside the create-certificate-with-ca folder
+create-certificate-with-ca/fabric-ca
+
+# Ignore specific Go module files
+channel/src/go/go.mod
+channel/src/go/go.sum
+channel/src/go/vendor
+
+#Ignore basic.tar.gz
+channel/deploy-chaincode/basic.tar.gz
+channel/deploy-chaincode/log.txt
+# ignore profile generated
+connection-profile/connection-org1.json
+connection-profile/C:\Users\Hkong\Desktop\ownership-api\src\main\resources
+
+
+# explorer
+channel/explorer/examples

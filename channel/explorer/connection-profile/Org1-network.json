@@ -1,0 +1,111 @@
+{
+    "name": "Org1-network",
+    "version": "2.0.0",
+    "client": {
+            "tlsEnable": true,
+            "adminCredential": {
+                    "id": "exploreradmin",
+                    "password": "explorerpw"
+            },
+            "caCredential": {
+                    "id": "admin",
+                    "password": "adminpw"
+            },
+            "enableAuthentication": true,
+            "organization": "Org1MSP",
+            "connection": {
+                    "timeout": {
+                            "peer": {
+                                    "endorser": "300"
+                            },
+                            "orderer": "300"
+                    }
+            }
+    },
+    "channels": {
+            "mychannel": {
+                    "peers": {
+                            "peer0.org1.ownify.com": {},
+                            "peer1.org1.ownify.com": {}
+
+                    },
+                    "orderers": [
+                            "orderer.ownify.com",
+                            "orderer2.ownify.com",
+                            "orderer3.ownify.com"
+                    ],
+                    "connection": {
+                            "timeout": {
+                                    "peer": {
+                                            "endorser": "600",
+                                            "eventHub": "600",
+                                            "eventReg": "600"
+                                    }
+                            }
+                    }
+            }
+    },
+    "organizations": {
+            "Org1MSP": {
+                    "mspid": "Org1MSP",
+                    "peers": [ "peer0.org1.ownify.com", "peer1.org1.ownify.com" ],
+                    "certificateAuthorities": [ "ca.org1.ownify.com" ]
+            }
+    },
+    "orderers": {
+            "orderer.ownify.com": {
+                    "url": "grpcs://orderer.ownify.com:7054",
+                    "grpcOptions": {
+                            "ssl-target-name-override": "orderer.ownify.com",
+                            "hostnameOverride": "orderer.ownify.com"
+                    },
+                    "tlsCACerts": {
+                            "pem": "/tmp/crypto/ordererOrganizations/ownify.com/orderers/orderer.ownify.com/tls/ca.crt"
+                    }
+            },
+            "orderer2.ownify.com": {
+                    "url": "grpcs://orderer2.ownify.com:8050",
+                    "grpcOptions": {
+                            "ssl-target-name-override": "orderer2.ownify.com"
+
+                    },
+                    "tlsCACerts": {
+                            "pem": "/tmp/crypto/ordererOrganizations/ownify.com/orderers/orderer.ownify.com/tls/ca.crt"
+                    }
+            }
+    },
+    "peers": {
+            "peer0.org1.ownify.com": {
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org1.ownify.com/peers/peer0.org1.ownify.com/tls/ca.crt"
+                    },
+                    "url": "grpcs://peer0.org1.ownify.com:7051",
+                    "grpcOptions": {
+                            "ssl-target-name-override": "peer0.org1.ownify.com"
+                    }
+            },
+            "peer1.org1.ownify.com": {
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org1.ownify.com/peers/peer1.org1.ownify.com/tls/ca.crt"
+                    },
+                    "url": "grpcs://peer1.org1.ownify.com:8051",
+                    "grpcOptions": {
+                            "ssl-target-name-override": "peer1.org1.ownify.com"
+                    }
+            }
+    },
+    "certificateAuthorities": {
+            "ca.org1.ownify.com": {
+                    "url": "https://ca.org1.ownify.com:7054",
+                    "httpOptions": {
+                            "verify": false
+                    },
+                    "tlsCACerts": {
+                            "path": "/tmp/crypto/peerOrganizations/org1.ownify.com/ca/ca.org1.ownify.com-cert.pem"
+                    },
+                    "caName": "ca.org1.ownify.com"
+
+            }
+    }
+}
+

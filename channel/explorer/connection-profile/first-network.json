@@ -1,0 +1,68 @@
+{
+	"name": "first-network",
+	"version": "1.0.0",
+	"license": "Apache-2.0",
+	"client": {
+		"tlsEnable": true,
+		"caCredential": {
+			"id": "admin",
+			"password": "adminpw"
+		},
+		"adminCredential": {
+			"id": "exploreradmin",
+			"password": "exploreradminpw"
+		},
+		"enableAuthentication": true,
+		"organization": "Org1MSP",
+		"connection": {
+			"timeout": {
+				"peer": {
+					"endorser": "300"
+				},
+				"orderer": "300"
+			}
+		}
+	},
+	"channels": {
+		"channel-org": {
+			"peers": {
+				"peer0.org1.ownify.com": {}
+			},
+			"connection": {
+				"timeout": {
+					"peer": {
+						"endorser": "6000",
+						"eventHub": "6000",
+						"eventReg": "6000"
+					}
+				}
+			}
+		}
+	},
+	"organizations": {
+		"Org1MSP": {
+			"mspid": "Org1MSP",
+			"adminPrivateKey": {
+				"path": "/etc/data/peerOrganizations/org1.ownify.com/users/Admin@org1.ownify.com/msp/keystore/priv_sk"
+			},
+			"peers": [
+				"peer0.org1.ownify.com"
+			],
+			"signedCert": {
+				"path": "/etc/data/peerOrganizations/org1.ownify.com/users/Admin@org1.ownify.com/msp/signcerts/cert.pem"
+			}
+		}
+	},
+	"peers": {
+		"peer0.org1.ownify.com": {
+			"tlsCACerts": {
+				"path": "/etc/data/peerOrganizations/org1.ownify.com/peers/peer0.org1.ownify.com/tls/ca.crt"
+			},
+			"url": "grpcs://peer0.org1.ownify.com:7051",
+			"eventUrl": "grpcs://peer0.org1.ownify.com:7053",
+			"grpcOptions": {
+				"ssl-target-name-override": "peer0.org1.ownify.com"
+			}
+		}
+	}
+}
